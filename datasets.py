@@ -138,7 +138,8 @@ def get_train_dataset(args):
     print(f"{len(avail_files)} available files")
 
     # Subsample if specified
-    if args.trainset.lower() in {'vggss', 'flickr'}:
+    # if args.trainset.lower() in {'vggss', 'flickr'}:
+    if args.trainset.lower() in {'vggss', 'flickr', 'lol'}: # custom dataset
         pass    # use full dataset
     else:
         subset = set(open(f"metadata/{args.trainset}.txt").read().splitlines())
@@ -183,6 +184,8 @@ def get_test_dataset(args):
         testcsv = 'metadata/vggss_heard_test.csv'
     elif args.testset == 'vggss_unheard':
         testcsv = 'metadata/vggss_unheard_test.csv'
+    elif args.testset == 'lol': # custom dataset
+        testcsv = 'metadata/lol_test.csv'
     else:
         raise NotImplementedError
     bbox_format = {'flickr': 'flickr',
